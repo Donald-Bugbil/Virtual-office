@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
+import {store} from './store/store';
+import {Provider} from 'react-redux';
+import MainRouter from './route.js';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <MainRouter/>
+    </Provider>
+  
   </React.StrictMode>,
   document.getElementById('root')
 );
