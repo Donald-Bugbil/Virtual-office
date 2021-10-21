@@ -1,40 +1,35 @@
 import React from 'react';
 import {Card, Button} from 'antd';
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {deletePost} from '../features/officeSlice';
 
-class OfficeCard extends React.Component{
-    constructor(props){
-        super(props)
-        var{department, description, image} = this.props;
-        this.department = department;
-        this.description = description;
-        this.image = image;
-        this.Card = Card;
-        var{Meta} = this.Card;
-        this.Meta = Meta
 
-    }
+const OfficeCard = ({image, department ,description }) =>{
 
-  
-    
-    render(){
-        const Meta = this.Meta;
+        const{Meta} = Card
+        const dispatch = useDispatch()
+        
         return (
             <>
                 <Card
                     hoverable={false}
                     style={{ width: 240 }}
-                    cover={<img alt="example" src={this.image} style={{height: "200px"}}/>}
+                    cover={<img alt="example" src={image} style={{height: "200px"}}/>}
                     size="small"
                     bordered={false}
                 >
-                    <Meta title={this.department} description={this.description} />
-                    <Button type="link"  Component={Link} href={`/${this.department}`}>Join</Button>
+                    <Meta title={department} description={description} />
+                    <Button type="link"  Component={Link} href={`/${department}`}>Join</Button>
+                    <Button type="link" onClick={() => dispatch(deletePost(department))}>Delete</Button>
+                    <Button type="link"  Component={Link} href={`/update/${department}`}>Update</Button>
                 </Card>
             </>
            
         )
-    }
+    
 }
+
+
 
 export default OfficeCard;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { connect } from 'react-redux';
+import {useState} from 'react';
+import {useSelector} from 'react-redux';
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -8,29 +9,30 @@ import {
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
+import { useParams } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 
-class OfficeDetail extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            collapsed: false
-        }
-        this.onCollapse = this.onCollapse.bind(this)
-    }
-    onCollapse = (collapsed) => {
-        this.setState({collapsed})
+const OfficeDetail = () => {
+
+    const offices = useSelector((state) => state.offices.offices)
+
+    const departmentParams = useParams().department
+
+    const office= offices.find(office => office.department === departmentParams);
+    console.log(office)
+    const{department, description} = office;
+   
+    const[collapsed, setCollaped] = useState(false)
+    const onCollapse = (collapsed) => {
+        setCollaped(collapsed)
 
     }
-
-    render() {
-        const{collapsed} = this.state;
         return (
             <Layout style={{ minHeight: '100vh' }}>
-                <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+                <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <div style={styles.logo} />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
@@ -57,18 +59,18 @@ class OfficeDetail extends React.Component {
                     <Header className="site-layout-background" style={{ padding: 0 }} />
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
-                            <Breadcrumb.Item>{this.props.office.department} Department</Breadcrumb.Item>
-                            <Breadcrumb.Item>{this.props.office.description}</Breadcrumb.Item>
+                            <Breadcrumb.Item>{department} Department</Breadcrumb.Item>
+                            <Breadcrumb.Item>{description}</Breadcrumb.Item>
                         </Breadcrumb>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                            Bill is a cat.
+                            {description}
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Company name ©2018</Footer>
                 </Layout>
             </Layout>
         )
-    }
+    
 }
 
 const styles = {
@@ -81,10 +83,6 @@ const styles = {
 
 // ownProps is the instance's props and where we can grab the parameter being pass to the route
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        office: state.offices.find(office => office.department === ownProps.match.params.department)
-    }
-}
 
-export default connect(mapStateToProps)(OfficeDetail);
+
+export default OfficeDetail;

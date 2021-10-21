@@ -1,4 +1,8 @@
-import {createStore } from 'redux';
-import officeReducer from './officeReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import officeReducer from '../features/officeSlice';
 
-export const store = createStore(officeReducer);
+export default configureStore({
+  reducer: {
+      offices: officeReducer
+  },
+})

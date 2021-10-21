@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
-import {store} from './store/store';
+import store from './store/store';
 import {Provider} from 'react-redux';
 import MainRouter from './route.js';
 
