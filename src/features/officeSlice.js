@@ -46,10 +46,17 @@ export const officeSlice = createSlice({
                 offices: state.offices.filter(office => office.department !== action.payload)
             }
         },
-        updatePost: (state, action, department ) =>{
+        updatePost: (state, action) =>{
             return {
                 ...state,
-                offices: state.offices.map(office => {if(office.department === department){return action.payload} else {return office}})
+                offices: state.offices.map(office => {if(office.department === action.payload.params){
+                    const update = {
+                        department: action.payload.department,
+                        description: action.payload.description,
+                        image: action.payload.image 
+                    }
+
+                    return update} else {return office}})
 
             }
         }

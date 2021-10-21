@@ -20,35 +20,20 @@ const UpdatePage =() =>{
     const offices = useSelector((state) => state.offices.offices)
     const dispatch = useDispatch()
 
-    const{department, description} = offices.find(office => office.department === departmentParam)
+    const office = offices.find(office => office.department === departmentParam)
 
-    const[update, setUpdate] = useState({})
-
-    const onChangeHandler = (event) =>{
-
-        const{name, value} = event.target
-        setUpdate({
-            [name]: value
-        })
-    }
-    const onSubmitHandler = (event) =>{
-        event.preventDefault()
-        const payload = {
-            department: update.department,
-            description: update.description
-        }
-        dispatch(updatePost(payload, departmentParam))
-        return history.push("/")
-
-    }
     const onFinish = (values) =>{
-        console.log(values)
+        values.params = departmentParam
+        values.image = office.image
+        const payload = values
+        console.log(payload.params)
+        dispatch(updatePost(payload))
+        return history.push("/")
     }
     return (
                 <Form 
-                    onSubmit={()=> onSubmitHandler()}
+                    onFinish={onFinish}
                     labelCol={{ span: 8 }}
-                    initialValues={{department: department, description: description}}
                     wrapperCol={{ span: 16 }}
                     style={styles.mainContainer}
                 >
@@ -56,13 +41,13 @@ const UpdatePage =() =>{
                         label="Department"
                         name="department"
                     >
-                        <Input onChange={onChangeHandler}/>
+                        <Input />
                     </Form.Item>
                     <Form.Item
                         label="Description"
                         name="description"
                     >
-                        <Input.TextArea onChange={onChangeHandler}/>
+                        <Input.TextArea />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType="submit">
