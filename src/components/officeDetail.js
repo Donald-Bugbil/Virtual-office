@@ -36,20 +36,21 @@ const OfficeDetail = () => {
                 <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <div style={styles.logo} />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
+                        {/* <Menu.Item key="1" icon={<PieChartOutlined />}>
                             Option 1
                 </Menu.Item>
                         <Menu.Item key="2" icon={<DesktopOutlined />}>
                             Option 2
-                </Menu.Item>
-                        <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
+                </Menu.Item> */}
+                        <SubMenu key="sub1" icon={<UserOutlined />} title="Users">
+                            <Menu.Item key="3">Wisdom</Menu.Item>
+                            <Menu.Item key="4">Philia</Menu.Item>
+                            <Menu.Item key="5">Gloria</Menu.Item>
+                            <Menu.Item key="5">Esthy</Menu.Item>
                         </SubMenu>
-                        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
+                        <SubMenu key="sub2" icon={<TeamOutlined />} title="Department">
+                            <Menu.Item key="6">IT Department</Menu.Item>
+                            {/* <Menu.Item key="8">Team 2</Menu.Item> */}
                         </SubMenu>
                         <Menu.Item key="9" icon={<FileOutlined />}>
                             Files
@@ -67,7 +68,7 @@ const OfficeDetail = () => {
                             {description}
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Company name ©2018</Footer>
+                    {/* <Footer style={{ textAlign: 'center' }}>Company name ©2018</Footer> */}
                 </Layout>
             </Layout>
         )

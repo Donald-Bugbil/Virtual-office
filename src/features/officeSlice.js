@@ -1,41 +1,45 @@
 import { createSlice } from '@reduxjs/toolkit';
-import financial from '../images/financial.jpeg';
-import fin from '../images/fin.jpeg';
-import finance from '../images/finance.png';
+import tech from '../images/coding.jpg';
+import business from '../images/businessdev.png';
+import communications from '../images/communications.jpg';
+import research from '../images/research.png';
+import accounts from '../images/account.jpg';
+import sales from '../images/sales.jpg';
+
 
 export const officeSlice = createSlice({
     name: "office",
     initialState :{
         offices : [
             {
-                department: 'Finance',
-                description: 'sales and procurement',
-                image: financial
+                department: 'IT Department',
+                description: 'Information Technology',
+                image: tech
             },
             {
-                department: 'Accounts',
-                description: 'Asset control and Budget',
-                image: fin
+                department: 'Business and Development Department',
+                description: 'Overview of Departments',
+                image: business
             },
             {
-                department: 'Customer Care',
-                description: 'Branding and promotions',
-                image: finance
+                department: 'Communications Department',
+                description: 'Branding and Promotions',
+                image: communications
             },
             {
-                department: 'Finance',
-                description: 'sales and procurement',
-                image: financial
+                department: 'Research and Development',
+                description: 'Research',
+                image: research
             },
             {
-                department: 'Finance',
-                description: 'sales and procurement',
-                image: financial
+                department: 'Accounts Department',
+                description: 'Accounts',
+                image: accounts
             },
             {
-                department: 'Finance',
-                description: 'sales and procurement',
-                image: financial
+                department: 'Sales Department',
+                description: 'Sales and Procurement',
+                image: sales
             }
         ]
     },
